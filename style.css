@@ -1,0 +1,158 @@
+:root {
+    /* Базовые переменные для отладки в браузере. 
+       В Телеграме они заменятся на системные. */
+    --tg-theme-bg-color: #1c1c1e;
+    --tg-theme-secondary-bg-color: #2c2c2e;
+    --tg-theme-text-color: #ffffff;
+    --tg-theme-hint-color: #8e8e93;
+    --tg-theme-link-color: #3e88f7;
+    --tg-theme-button-color: #3e88f7;
+    --tg-theme-button-text-color: #ffffff;
+    
+    --radius: 12px;
+    --anim-speed: 0.3s;
+}
+
+body {
+    background-color: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Скрываем горизонтальный скролл при анимациях */
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Стили View (Экранов) --- */
+.view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: var(--tg-theme-bg-color);
+    transition: transform var(--anim-speed) cubic-bezier(0.25, 1, 0.5, 1);
+    padding-bottom: 40px;
+}
+
+/* Начальное состояние экранов */
+.active-view {
+    transform: translateX(0);
+    z-index: 1;
+}
+
+.next-view {
+    transform: translateX(100%);
+    z-index: 2; /* Они лежат поверх главного */
+    background-color: var(--tg-theme-bg-color);
+}
+
+/* --- Главная страница --- */
+.main-header {
+    padding: 30px 20px 10px;
+    text-align: center;
+}
+.header-icon { font-size: 48px; margin-bottom: 10px; }
+h1 { margin: 0; font-size: 28px; font-weight: 800; }
+.subtitle { color: var(--tg-theme-link-color); margin-top: 5px; font-weight: 500;}
+
+.content-container { padding: 20px; }
+
+.intro-card {
+    background: var(--tg-theme-secondary-bg-color);
+    padding: 15px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.intro-card h3 { margin-top: 0; margin-bottom: 8px;}
+
+/* Меню */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-item {
+    background: var(--tg-theme-secondary-bg-color);
+    padding: 15px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+.menu-item:active { transform: scale(0.98); opacity: 0.8; }
+.menu-item .icon { font-size: 20px; margin-right: 15px; width: 25px; text-align: center;}
+.menu-item .text { flex-grow: 1; font-weight: 500; }
+.menu-item .arrow { color: var(--tg-theme-hint-color); font-weight: bold;}
+
+/* --- Внутренние страницы --- */
+.page-content { padding: 20px; padding-top: 10px; }
+.meta-info { color: var(--tg-theme-hint-color); font-size: 12px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;}
+h2 { margin-top: 0; font-size: 24px; border-bottom: 2px solid var(--tg-theme-secondary-bg-color); padding-bottom: 10px;}
+
+/* Списки правил */
+.rules-list { padding-left: 20px; line-height: 1.6; }
+.rules-list li { margin-bottom: 8px; }
+
+.simple-list { list-style: none; padding: 0; }
+.simple-list li { 
+    background: var(--tg-theme-secondary-bg-color); 
+    padding: 12px; 
+    border-radius: 8px; 
+    margin-bottom: 8px; 
+    border-left: 3px solid var(--tg-theme-link-color);
+}
+
+/* Блоки с цветами */
+.section-block {
+    padding: 15px;
+    border-radius: var(--radius);
+    margin-bottom: 15px;
+    background: rgba(128, 128, 128, 0.1);
+}
+.section-block h3 { margin-top: 0; color: var(--tg-theme-text-color); }
+.success { border-left: 4px solid #4cd964; }
+.danger { border-left: 4px solid #ff3b30; }
+.info { border-left: 4px solid #ffcc00; }
+
+/* Карточки */
+.card-list { display: grid; gap: 10px; grid-template-columns: 1fr; }
+.card-item {
+    background: var(--tg-theme-secondary-bg-color);
+    padding: 15px;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+}
+.card-item b { margin-bottom: 5px; color: var(--tg-theme-button-color); }
+
+.warning-text { color: #ff3b30; font-size: 13px; font-weight: 500; margin-top: 15px;}
+code { background: rgba(128,128,128,0.3); padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+
+/* Кнопки ссылок */
+.btn-link {
+    display: block;
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
+    text-align: center;
+    padding: 12px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.footer-note {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--tg-theme-hint-color);
+    line-height: 1.4;
+}
+
+.divider { height: 1px; background: var(--tg-theme-secondary-bg-color); margin: 20px 0; }
