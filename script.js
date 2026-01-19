@@ -1,21 +1,28 @@
 const tg = window.Telegram.WebApp;
 
 document.addEventListener('DOMContentLoaded', () => {
-    tg.ready(); 
-    
-    tg.expand(); 
-    
-    tg.headerColor = '#000000';
-    tg.backgroundColor = '#000000';
+    tg.ready();
+    tg.expand();
+
+    if (tg.headerColor) tg.setHeaderColor('#000000');
+    if (tg.backgroundColor) tg.setBackgroundColor('#000000');
 
     tg.BackButton.onClick(() => {
         router.go('home');
     });
 
-    document.querySelectorAll('.nav-btn, .outline-btn, .c-item').forEach(btn => {
-        btn.addEventListener('click', () => {
+    const interactables = document.querySelectorAll('button, .c-item, .brand-link, .nav-btn, .price-item, .p-card');
+    
+    interactables.forEach(el => {
+        el.addEventListener('click', () => {
             if (tg.HapticFeedback) {
                 tg.HapticFeedback.impactOccurred('light');
+            }
+        });
+        
+        el.addEventListener('mouseenter', () => {
+            if (tg.HapticFeedback && window.innerWidth > 1024) {
+                tg.HapticFeedback.selectionChanged();
             }
         });
     });
@@ -28,15 +35,16 @@ const router = {
         if (this.currentRoute === routeId) return;
 
         const views = document.querySelectorAll('.view');
-        
-        views.forEach(el => {
-            el.classList.remove('active');
-            if (el.id === routeId) {
-                el.classList.add('active');
-            }
-        });
-        
-        window.scrollTo({ top: 0, behavior: 'smooth' }); 
+        views.forEach(el => el.classList.remove('active'));
+
+        const target = document.getElementById(routeId);
+        if (target) {
+            target.classList.add('active');
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
 
         this.currentRoute = routeId;
 
