@@ -524,6 +524,10 @@ h1 {
     animation-delay: 0.35s;
 }
 
+.stagger-list>*:nth-child(8) {
+    animation-delay: 0.40s;
+}
+
 .delay-1 {
     animation-delay: 0.2s;
 }
