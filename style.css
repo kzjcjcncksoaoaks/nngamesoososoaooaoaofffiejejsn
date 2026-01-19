@@ -4,7 +4,7 @@
     --border: rgba(255, 255, 255, 0.12);
     --border-hover: rgba(255, 255, 255, 0.5);
     
-    --primary: #00ff66; /* Electric Green */
+    --primary: #00ff66;
     --primary-dim: rgba(0, 255, 102, 0.15);
     --primary-bright: #5eff99;
     
@@ -32,7 +32,6 @@ body {
     cursor: default;
 }
 
-/* Эффект текстуры */
 .bg-noise {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     opacity: 0.04;
@@ -56,7 +55,6 @@ main {
     padding: 30px 20px 80px 20px;
 }
 
-/* --- Заголовки --- */
 .hero { text-align: center; margin-bottom: 45px; }
 
 .brand-link { text-decoration: none; display: inline-block; margin-bottom: 20px; }
@@ -69,7 +67,7 @@ main {
     transition: var(--transition);
     display: flex; align-items: center; gap: 8px;
 }
-/* Hover эффект для бренда */
+
 .brand-link:hover .brand-box { 
     background: var(--primary-dim); 
     color: var(--primary); 
@@ -83,7 +81,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 .link-highlight { color: var(--primary); text-decoration: none; border-bottom: 1px solid transparent; transition: var(--transition); }
 .link-highlight:hover { border-bottom-color: var(--primary); text-shadow: 0 0 10px var(--primary-dim); }
 
-/* --- Карточки --- */
 .info-card {
     border: 1px solid var(--border);
     background: var(--surface);
@@ -97,7 +94,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 .card-icon { color: var(--primary); font-size: 20px; }
 .card-text { font-size: 14px; line-height: 1.6; color: #ddd; }
 
-/* --- МЕНЮ (NAV) --- */
 .modern-menu { display: flex; flex-direction: column; gap: 12px; }
 
 .nav-btn {
@@ -112,7 +108,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
     position: relative;
 }
 
-/* Hover & Active эффекты для кнопок меню */
 .nav-btn:hover {
     border-color: var(--border-hover);
     background: #111;
@@ -142,7 +137,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 .nav-btn .arrow { font-size: 12px; color: #333; transition: var(--transition); }
 .nav-btn:hover .arrow { color: var(--primary); transform: translateX(5px); }
 
-/* --- Внутренние страницы --- */
 .view { display: none; }
 .view.active { display: block; }
 
@@ -185,7 +179,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 }
 .tech-alert:hover { border-style: solid; border-color: var(--border-hover); background: rgba(255,255,255,0.04); }
 
-/* Плитка цен */
 .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .price-item {
     border: 1px solid var(--border); padding: 20px 10px; border-radius: 12px;
@@ -194,7 +187,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 .price-item:hover { transform: translateY(-5px); border-color: var(--primary); }
 .price-item .val { font-size: 18px; font-weight: 800; color: var(--primary); margin-top: 5px; display: block; }
 
-/* Наказания */
 .punish-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .p-card {
     background: var(--surface); border: 1px solid var(--border);
@@ -208,7 +200,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 
 .code { font-family: 'Roboto Mono', monospace; background: rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 6px; color: #fff; font-size: 13px; border: 1px solid rgba(255,255,255,0.1); }
 
-/* Контакты */
 .contact-list { display: flex; flex-direction: column; gap: 12px; }
 .c-item {
     display: flex; justify-content: space-between; align-items: center;
@@ -219,7 +210,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 .c-item:hover { border-color: var(--primary); background: #111; transform: translateX(5px); }
 .c-val.highlight { color: var(--primary); font-weight: 800; }
 
-/* Кнопки действий */
 .outline-btn {
     width: 100%; padding: 18px; background: transparent;
     border: 1px solid var(--primary); color: var(--primary);
@@ -229,7 +219,6 @@ h1 { font-size: 34px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1
 }
 .outline-btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 25px var(--primary-dim); }
 
-/* Анимации появления */
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
