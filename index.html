@@ -10,219 +10,256 @@
 </head>
 <body>
 
-    <div class="background-glow"></div>
-    <div class="scanline"></div>
+    <div class="bg-noise"></div>
+    <div class="green-glow-top"></div>
 
     <main id="app">
         <section id="home" class="view active">
-            <header class="hero animate-block">
-                <a href="https://t.me/nenegame" target="_blank" class="logo-link">
-                    <div class="logo">NN GAME <i class="fa-solid fa-external-link-alt"></i></div>
+            <header class="hero animate-up">
+                <a href="https://t.me/nenegame" target="_blank" class="brand-link">
+                    <div class="brand-box">
+                        NN GAME <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
                 </a>
-                <h1>Правила Чата</h1>
-                <p class="subtitle">Добро пожаловать в <a href="https://t.me/nenegame_chat" target="_blank" class="tg-link">@nenegame_chat</a></p>
+                <h1 class="glitch-text">Правила Чата</h1>
+                <p class="subtitle">
+                    Добро пожаловать в <a href="https://t.me/nenegame_chat" target="_blank" class="link-highlight">@nenegame_chat</a>
+                </p>
             </header>
 
-            <div class="card intro-card animate-block delay-1">
-                <p><i class="fa-solid fa-circle-info prompt-icon"></i> Здесь собраны все действующие правила. Ознакомьтесь, прежде чем участвовать.</p>
+            <div class="info-card animate-up delay-1">
+                <div class="card-icon"><i class="fa-solid fa-circle-info"></i></div>
+                <div class="card-text">
+                    Ознакомьтесь с правилами перед общением. Незнание не освобождает от ответственности.
+                </div>
             </div>
 
-            <nav class="menu animate-block delay-2">
-                <button class="menu-item stagger-item" onclick="router.go('forbidden')">
-                    <span class="icon-wrapper"><i class="fa-solid fa-hand-back-fist"></i></span>
-                    <span class="text">1. Запрещённые действия</span>
-                    <i class="fa-solid fa-chevron-right chevron"></i>
+            <nav class="modern-menu animate-up delay-2">
+                <button class="nav-btn stagger" onclick="router.go('forbidden')">
+                    <div class="nav-icon"><i class="fa-solid fa-hand-back-fist"></i></div>
+                    <span>Запрещённые действия</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
                 </button>
-                <button class="menu-item stagger-item" onclick="router.go('giveaways')">
-                    <span class="icon-wrapper"><i class="fa-solid fa-gift"></i></span>
-                    <span class="text">2. Раздачи и конкурсы</span>
-                    <i class="fa-solid fa-chevron-right chevron"></i>
+                
+                <button class="nav-btn stagger" onclick="router.go('giveaways')">
+                    <div class="nav-icon"><i class="fa-solid fa-gift"></i></div>
+                    <span>Раздачи и конкурсы</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
                 </button>
-                <button class="menu-item stagger-item" onclick="router.go('paid')">
-                    <span class="icon-wrapper"><i class="fa-solid fa-coins"></i></span>
-                    <span class="text">3. Платные сообщения</span>
-                    <i class="fa-solid fa-chevron-right chevron"></i>
+
+                <button class="nav-btn stagger" onclick="router.go('paid')">
+                    <div class="nav-icon"><i class="fa-solid fa-coins"></i></div>
+                    <span>Платные сообщения</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
                 </button>
-                <button class="menu-item stagger-item" onclick="router.go('moderation')">
-                    <span class="icon-wrapper"><i class="fa-solid fa-gavel"></i></span>
-                    <span class="text">4. Модерация и наказания</span>
-                    <i class="fa-solid fa-chevron-right chevron"></i>
+
+                <button class="nav-btn stagger" onclick="router.go('moderation')">
+                    <div class="nav-icon"><i class="fa-solid fa-gavel"></i></div>
+                    <span>Модерация и наказания</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
                 </button>
-                <button class="menu-item stagger-item" onclick="router.go('voice')">
-                    <span class="icon-wrapper"><i class="fa-solid fa-microphone-lines"></i></span>
-                    <span class="text">5. Голосовой чат</span>
-                    <i class="fa-solid fa-chevron-right chevron"></i>
+
+                <button class="nav-btn stagger" onclick="router.go('voice')">
+                    <div class="nav-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                    <span>Голосовой чат</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
                 </button>
-                <button class="menu-item stagger-item" onclick="router.go('recommendations')">
-                    <span class="icon-wrapper"><i class="fa-solid fa-shield-halved"></i></span>
-                    <span class="text">6. Рекомендации</span>
-                    <i class="fa-solid fa-chevron-right chevron"></i>
+
+                <button class="nav-btn stagger" onclick="router.go('recommendations')">
+                    <div class="nav-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span>Рекомендации</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
                 </button>
-                <button class="menu-item stagger-item" onclick="router.go('contacts')">
-                    <span class="icon-wrapper"><i class="fa-solid fa-headset"></i></span>
-                    <span class="text">7. Контакты и поддержка</span>
-                    <i class="fa-solid fa-chevron-right chevron"></i>
+
+                <button class="nav-btn stagger" onclick="router.go('contacts')">
+                    <div class="nav-icon"><i class="fa-solid fa-headset"></i></div>
+                    <span>Контакты и поддержка</span>
+                    <i class="fa-solid fa-chevron-right arrow"></i>
                 </button>
             </nav>
         </section>
 
         <section id="forbidden" class="view">
-            <div class="content-header animate-block">
-                <h2><i class="fa-solid fa-hand-back-fist icon-title"></i> Запрещено</h2>
-                <div class="meta">11 октября 2025 • NN Game</div>
+            <div class="section-head animate-up">
+                <h2>Запрещено</h2>
+                <span class="badge">Strict</span>
             </div>
-            <div class="content-body">
-                <ul class="danger-list stagger-container">
-                    <li class="stagger-item">Спам, флуд, бессмысленные сообщения</li>
-                    <li class="stagger-item">Политика, религия, национализм</li>
-                    <li class="stagger-item">Контент 18+, откровенные изображения (в т.ч аватарки)</li>
-                    <li class="stagger-item">Реклама, продажи/покупки, реф. ссылки, ссылки на каналы</li>
-                    <li class="stagger-item">Попрошайничество, просьбы перейти в ЛС, обмены</li>
-                    <li class="stagger-item">Сбор/публикация личной информации</li>
-                    <li class="stagger-item">Распространение вирусов, вредоносных ссылок</li>
+            <div class="content-wrapper">
+                <ul class="modern-list stagger-list">
+                    <li>Спам, флуд, бессмысленные сообщения</li>
+                    <li>Политика, религия, национализм</li>
+                    <li>Контент 18+, порнография (в т.ч. аватарки)</li>
+                    <li>Реклама, продажи, реферальные ссылки</li>
+                    <li>Попрошайничество, призывы в ЛС</li>
+                    <li>Доксинг (сбор личной информации)</li>
+                    <li>Вредоносные ссылки и софт</li>
                 </ul>
             </div>
         </section>
 
         <section id="giveaways" class="view">
-            <div class="content-header animate-block">
-                <h2><i class="fa-solid fa-gift icon-title"></i> Раздачи и конкурсы</h2>
-                <div class="meta">11 октября 2025 • NN Game</div>
+            <div class="section-head animate-up">
+                <h2>Раздачи</h2>
+                <span class="badge">Events</span>
             </div>
-            <div class="content-body">
-                <h3 class="animate-block delay-1">Разрешено:</h3>
-                <ul class="check-list stagger-container">
-                    <li class="stagger-item">Викторины, квизы, загадки, реакции, творчество</li>
+            <div class="content-wrapper">
+                <div class="block-label">Разрешено</div>
+                <ul class="modern-list check stagger-list">
+                    <li>Викторины, квизы, загадки</li>
+                    <li>Творческие конкурсы</li>
                 </ul>
-                <h3 class="animate-block delay-2">Запрещено:</h3>
-                <ul class="danger-list stagger-container delay-2">
-                    <li class="stagger-item">Звать в ЛС под видом раздачи</li>
-                    <li class="stagger-item">Реклама каналов/товаров</li>
-                    <li class="stagger-item">Сбор личных данных участников</li>
+
+                <div class="block-label red">Запрещено</div>
+                <ul class="modern-list cross stagger-list delay-1">
+                    <li>Звать в ЛС под видом раздачи</li>
+                    <li>Реклама каналов и товаров</li>
+                    <li>Сбор личных данных</li>
                 </ul>
-                <div class="highlight-box animate-block delay-3">
-                    <strong><i class="fa-solid fa-circle-exclamation"></i> Организаторам:</strong><br>
-                    Указывай чёткие условия, сроки и призы. Определяй победителей честно и своевременно.
+
+                <div class="tech-alert animate-up delay-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <strong>Организаторам:</strong><br>
+                        Указывайте чёткие условия и сроки. Выдавайте призы честно.
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="paid" class="view">
-            <div class="content-header animate-block">
-                <h2><i class="fa-solid fa-coins icon-title"></i> Платные сообщения</h2>
-                <div class="meta">11 октября 2025 • NN Game</div>
+            <div class="section-head animate-up">
+                <h2>Платные сообщения</h2>
+                <span class="badge">Coins</span>
             </div>
-            <div class="content-body">
-                <ul class="star-list stagger-container">
-                    <li class="stagger-item"><strong>Пятница:</strong> спеццена 1-2 звезды</li>
-                    <li class="stagger-item"><strong>Ночное время:</strong> ламповый тариф (от 10 000 и идет на спад ↓)</li>
-                    <li class="stagger-item"><strong>Звезды не возвращаются:</strong> удалённые сообщения не компенсируются</li>
-                    <li class="stagger-item"><strong>Обычно цена:</strong> 10–20 звёзд по будням. Может меняться в течение дня.</li>
-                </ul>
-                <div class="warning-box animate-block delay-2">
-                    <i class="fa-solid fa-triangle-exclamation"></i> Сообщения с рекламой, ссылками и флудом будут удалены автоматически.
+            <div class="content-wrapper">
+                <div class="pricing-grid stagger-list">
+                    <div class="price-item">
+                        <span class="lbl">Пятница</span>
+                        <span class="val">1-2 ⭐</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="lbl">Будни</span>
+                        <span class="val">10-20 ⭐</span>
+                    </div>
+                    <div class="price-item wide">
+                        <span class="lbl">Ночь</span>
+                        <span class="val">Ламповый тариф (от 10к ↓)</span>
+                    </div>
+                </div>
+
+                <div class="tech-alert animate-up delay-2">
+                    <i class="fa-solid fa-ban"></i>
+                    <div>
+                        <strong>Звёзды не возвращаются.</strong><br>
+                        Реклама и флуд удаляются ботом без компенсации.
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="moderation" class="view">
-            <div class="content-header animate-block">
-                <h2><i class="fa-solid fa-gavel icon-title"></i> Модерация и наказания</h2>
-                <div class="meta">11 октября 2025 • NN Game</div>
+            <div class="section-head animate-up">
+                <h2>Наказания</h2>
+                <span class="badge">System</span>
             </div>
-            <div class="content-body">
-                <h3 class="animate-block delay-1">Типы наказаний:</h3>
-                <div class="punishment-grid stagger-container delay-1">
-                    <div class="p-card warn stagger-item">
-                        <span><i class="fa-solid fa-triangle-exclamation"></i> Варн</span>
-                        <small>Мягкая реакция. 2 варна = мут.</small>
+            <div class="content-wrapper">
+                <div class="punish-cards stagger-list">
+                    <div class="p-card">
+                        <div class="pc-icon yellow"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <strong>Варн</strong>
+                        <small>2 варна = мут</small>
                     </div>
-                    <div class="p-card mute stagger-item">
-                        <span><i class="fa-solid fa-microphone-slash"></i> Мут</span>
-                        <small>48 часов. Варны обнуляются.</small>
+                    <div class="p-card">
+                        <div class="pc-icon orange"><i class="fa-solid fa-microphone-slash"></i></div>
+                        <strong>Мут</strong>
+                        <small>48 часов</small>
                     </div>
-                    <div class="p-card ban stagger-item">
-                        <span><i class="fa-solid fa-ban"></i> Бан</span>
-                        <small>Полная блокировка.</small>
+                    <div class="p-card">
+                        <div class="pc-icon red"><i class="fa-solid fa-ban"></i></div>
+                        <strong>Бан</strong>
+                        <small>Блокировка</small>
                     </div>
                 </div>
-                
-                <h3 class="animate-block delay-2">Действия:</h3>
-                <ul class="info-list stagger-container delay-2">
-                    <li class="stagger-item">Не тегай админа без причины. Вызов модерации: <code class="cmd">@admin</code></li>
-                    <li class="stagger-item">Жалоба на скам: <a href="https://t.me/nerush_neo" class="tg-link"><code class="cmd">@nerush_neo</code></a></li>
-                    <li class="stagger-item">Пожаловаться на сообщение: ответом <code class="cmd">!report</code></li>
-                </ul>
 
-                <div class="bot-info animate-block delay-3">
-                    <strong><i class="fa-solid fa-robot"></i> Боты:</strong> Автоматически удаляют ссылки и приглашения. Если бот удалил сообщение — звезды не возвращаются. Не флудите модераторам в ЛС.
-                </div>
+                <div class="block-label">Действия</div>
+                <ul class="modern-list stagger-list delay-1">
+                    <li>Вызов админа: <span class="code">@admin</span></li>
+                    <li>Жалоба на скам: <a href="https://t.me/goldpoverty" class="link-highlight">@goldpoverty</a></li>
+                    <li>Репорт сообщения: <span class="code">!report</span></li>
+                </ul>
             </div>
         </section>
 
         <section id="voice" class="view">
-            <div class="content-header animate-block">
-                <h2><i class="fa-solid fa-microphone-lines icon-title"></i> Голосовой чат</h2>
-                <div class="meta">11 октября 2025 • NN Game</div>
+            <div class="section-head animate-up">
+                <h2>Голосовой чат</h2>
+                <span class="badge">Voice</span>
             </div>
-            <div class="content-body">
-                <ul class="voice-list stagger-container">
-                    <li class="stagger-item"><i class="fa-solid fa-music li-icon"></i> Музыка возможна по согласию участников.</li>
-                    <li class="stagger-item bad"><i class="fa-solid fa-volume-xmark li-icon"></i> Запрещены крики, тесты микрофона, шумы.</li>
-                    <li class="stagger-item bad"><i class="fa-solid fa-rectangle-ad li-icon"></i> Реклама в войсе запрещена.</li>
-                    <li class="stagger-item bad"><i class="fa-solid fa-book-skull li-icon"></i> Действуют все запреты из Раздела 1.</li>
-                    <li class="stagger-item"><i class="fa-solid fa-handshake li-icon"></i> Не перебивайте — уважайте говорящего.</li>
-                    <li class="stagger-item"><i class="fa-solid fa-microphone-slash li-icon"></i> Выключайте микрофон, когда молчите.</li>
+            <div class="content-wrapper">
+                <ul class="modern-list stagger-list">
+                    <li>Музыка — только с согласия всех.</li>
+                    <li>Без криков и шумов.</li>
+                    <li>Реклама строго запрещена.</li>
+                    <li>Уважайте говорящего, не перебивайте.</li>
+                    <li>Молчишь? Выключи микрофон.</li>
                 </ul>
-                <button class="action-btn animate-block delay-2" onclick="router.go('forbidden')">
-                    Открыть Раздел 1 <i class="fa-solid fa-arrow-right"></i>
+                <button class="outline-btn animate-up delay-2" onclick="router.go('forbidden')">
+                    См. Запрещенные действия
                 </button>
             </div>
         </section>
 
         <section id="recommendations" class="view">
-            <div class="content-header animate-block">
-                <h2><i class="fa-solid fa-shield-halved icon-title"></i> Рекомендации</h2>
-                <div class="meta">11 октября 2025 • NN Game</div>
+            <div class="section-head animate-up">
+                <h2>Рекомендации</h2>
+                <span class="badge">Safety</span>
             </div>
-            <div class="content-body">
-                <ul class="info-list stagger-container">
-                    <li class="stagger-item">Не нажимайте на команды (начинаются с "/"), если не готовы платить.</li>
-                    <li class="stagger-item">Не переходите по подозрительным ссылкам.</li>
-                    <li class="stagger-item">Будьте бдительны с обменом подарками — часто это обман.</li>
-                    <li class="stagger-item">Не делитесь личными данными.</li>
+            <div class="content-wrapper">
+                <ul class="modern-list stagger-list">
+                    <li>Осторожно с командами на «/» (это платно).</li>
+                    <li>Не переходи по левым ссылкам.</li>
+                    <li>Обмен подарками — частый способ обмана.</li>
+                    <li>Береги личные данные.</li>
                 </ul>
-                <h3 class="animate-block delay-2">Техническое:</h3>
-                <ul class="tech-list stagger-container delay-2">
-                    <li class="stagger-item">Используй поиск <i class="fa-solid fa-magnifying-glass"></i> в чате.</li>
-                    <li class="stagger-item">Обновляй Telegram.</li>
-                    <li class="stagger-item">Отвечай через цитирование.</li>
-                    <li class="stagger-item">Подозрительное? Пиши <code class="cmd">@admin</code> или <a href="https://t.me/nerush_neo" class="tg-link"><code class="cmd">@nerush_neo</code></a></li>
+                
+                <div class="block-label">Техническое</div>
+                <ul class="modern-list stagger-list delay-1">
+                    <li>Используй поиск по чату.</li>
+                    <li>Обновляй Telegram.</li>
+                    <li>Подозрительное? Пиши <a href="https://t.me/nerush_neo" class="link-highlight">@nerush_neo</a></li>
                 </ul>
             </div>
         </section>
 
         <section id="contacts" class="view">
-            <div class="content-header animate-block">
-                <h2><i class="fa-solid fa-headset icon-title"></i> Контакты</h2>
-                <div class="meta">11 октября 2025 • NN Game</div>
+            <div class="section-head animate-up">
+                <h2>Контакты</h2>
+                <span class="badge">Support</span>
             </div>
-            <div class="content-body">
-                <div class="contact-card animate-block delay-1">
-                    <h3>Кому писать?</h3>
-                    <p><i class="fa-solid fa-bell"></i> Вызов модерации: <span class="tag">@admin</span> (в чате)</p>
-                    <p><i class="fa-solid fa-comment-dots"></i> Вопросы по чату: <a href="https://t.me/nerush_neo" class="tg-link"><span class="tag clickable">@nerush_neo</span></a></p>
-                    <p><i class="fa-solid fa-circle-exclamation"></i> Жалоба: <span class="tag">!report</span> (реплаем)</p>
+            <div class="content-wrapper">
+                <div class="contact-list stagger-list">
+                    <div class="c-item">
+                        <div class="c-label">Вызов модерации</div>
+                        <div class="c-val code">@admin</div>
+                    </div>
+                    <a href="https://t.me/nerush_neo" class="c-item link">
+                        <div class="c-label">Вопросы по чату</div>
+                        <div class="c-val highlight">@nerush_neo <i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <div class="c-item">
+                        <div class="c-label">Жалоба (reply)</div>
+                        <div class="c-val code">!report</div>
+                    </div>
                 </div>
-                <div class="footer-note animate-block delay-2">
-                    <p>Правила могут меняться. Незнание не освобождает от ответственности.</p>
-                    <p><em>Модераторы не сотрудники Telegram.</em></p>
+
+                <div class="footer-msg animate-up delay-2">
+                    NN GAME © 2025<br>
+                    Модераторы не являются сотрудниками Telegram.
                 </div>
             </div>
         </section>
 
     </main>
-    
     <script src="script.js"></script>
 </body>
 </html>
