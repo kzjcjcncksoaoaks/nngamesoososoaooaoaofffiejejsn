@@ -1,63 +1,544 @@
-// Инициализация Telegram WebApp API
-const tg = window.Telegram.WebApp;
+:root {
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --border: rgba(255, 255, 255, 0.15);
+    --border-hover: rgba(255, 255, 255, 0.4);
+    --primary: #00ff66;
+    --primary-dim: rgba(0, 255, 102, 0.1);
+    --text-main: #ffffff;
+    --text-sec: #888888;
+    --radius: 12px;
+    --font: -apple-system, BlinkMacSystemFont, 'Inter', 'Roboto', sans-serif;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Сообщаем TG, что приложение загрузилось
-    tg.ready(); 
-    
-    // Растягиваем на всю возможную высоту
-    tg.expand(); 
-    
-    // Настраиваем цвета статус-бара и фона самого приложения
-    tg.headerColor = '#000000';
-    tg.backgroundColor = '#000000';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
-    // Слушаем нажатие на встроенную кнопку "Назад" в интерфейсе Telegram
-    tg.BackButton.onClick(() => {
-        router.go('home');
-    });
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: var(--font);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-    // Добавляем тактильную отдачу (вибрацию) при кликах на кнопки меню для мобилок
-    document.querySelectorAll('.nav-btn, .outline-btn, .c-item').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (tg.HapticFeedback) {
-                tg.HapticFeedback.impactOccurred('light');
-            }
-        });
-    });
-});
+.bg-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+}
 
-const router = {
-    currentRoute: 'home',
+.green-glow-top {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    filter: blur(150px);
+    opacity: 0.15;
+    z-index: -2;
+    pointer-events: none;
+}
 
-    /**
-     * Переход между секциями сайта
-     * @param {string} routeId - ID секции (home, forbidden, и т.д.)
-     */
-    go: function(routeId) {
-        if (this.currentRoute === routeId) return;
+main {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 24px 20px 60px 20px;
+}
 
-        // Находим все экраны
-        const views = document.querySelectorAll('.view');
-        
-        // Скрываем текущие и активируем нужный
-        views.forEach(el => {
-            el.classList.remove('active');
-            if (el.id === routeId) {
-                el.classList.add('active');
-            }
-        });
-        
-        // Всегда скроллим в начало страницы при переходе
-        window.scrollTo({ top: 0, behavior: 'smooth' }); 
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-        this.currentRoute = routeId;
+.brand-link {
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 16px;
+}
 
-        // Логика отображения кнопки "Назад" в верхнем баре TG
-        if (routeId === 'home') {
-            tg.BackButton.hide();
-        } else {
-            tg.BackButton.show();
-        }
+.brand-box {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: rgba(0, 255, 102, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-link:hover .brand-box {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 20px var(--primary-dim);
+    transform: translateY(-2px);
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.subtitle {
+    color: var(--text-sec);
+    font-size: 15px;
+}
+
+.link-highlight {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 255, 102, 0.3);
+    transition: 0.2s;
+}
+
+.link-highlight:hover {
+    border-bottom-color: var(--primary);
+    text-shadow: 0 0 10px var(--primary-dim);
+}
+
+.info-card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+}
+
+.card-icon {
+    color: var(--primary);
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+.card-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ccc;
+}
+
+.modern-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-btn {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn:hover {
+    border-color: var(--text-main);
+    background: #111;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.nav-btn:active {
+    transform: scale(0.97) translateY(-1px);
+}
+
+.nav-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-right: 16px;
+    color: var(--primary);
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover .nav-icon {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 15px var(--primary-dim);
+}
+
+.nav-btn span {
+    font-size: 16px;
+    font-weight: 500;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.nav-btn .arrow {
+    font-size: 12px;
+    color: #444;
+    transition: 0.3s ease;
+}
+
+.nav-btn:hover .arrow {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+}
+
+.section-head h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #000;
+    background: var(--primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.block-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-sec);
+    margin: 20px 0 10px 0;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.block-label.red {
+    color: #ff4d4d;
+}
+
+.modern-list {
+    list-style: none;
+}
+
+.modern-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 15px;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 24px;
+    transition: all 0.2s ease;
+}
+
+.modern-list li:hover {
+    color: var(--primary);
+    padding-left: 30px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.modern-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20px;
+    width: 6px;
+    height: 6px;
+    background: var(--text-sec);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.modern-list li:hover::before {
+    background: var(--primary);
+    box-shadow: 0 0 8px var(--primary);
+    left: 6px;
+}
+
+.modern-list.check li::before {
+    background: var(--primary);
+}
+
+.modern-list.cross li::before {
+    background: #ff4d4d;
+}
+
+.tech-alert {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed var(--border);
+    padding: 15px;
+    border-radius: var(--radius);
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ccc;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.tech-alert:hover {
+    border-style: solid;
+    border-color: var(--primary);
+    background: rgba(0, 255, 102, 0.02);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.price-item {
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    background: var(--surface);
+    transition: all 0.3s ease;
+}
+
+.price-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 102, 0.1);
+}
+
+.price-item.wide {
+    grid-column: span 2;
+}
+
+.price-item .lbl {
+    display: block;
+    font-size: 12px;
+    color: var(--text-sec);
+    margin-bottom: 5px;
+}
+
+.price-item .val {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.punish-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.p-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 15px 5px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.p-card:hover {
+    transform: scale(1.08);
+    border-color: var(--text-main);
+    z-index: 1;
+}
+
+.pc-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.pc-icon.yellow {
+    color: #ffd700;
+}
+
+.pc-icon.orange {
+    color: #ff8800;
+}
+
+.pc-icon.red {
+    color: #ff4d4d;
+}
+
+.p-card strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.p-card small {
+    font-size: 10px;
+    color: var(--text-sec);
+}
+
+.code {
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.c-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.25s ease;
+}
+
+.c-item:hover {
+    border-color: var(--primary);
+    background: #111;
+    transform: translateX(6px);
+}
+
+.c-label {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.c-val.highlight {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.footer-msg {
+    text-align: center;
+    color: #555;
+    font-size: 12px;
+    margin-top: 40px;
+    line-height: 1.6;
+}
+
+.outline-btn {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-weight: bold;
+    border-radius: var(--radius);
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.outline-btn:hover {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 25px var(--primary-dim);
+    transform: translateY(-2px);
+}
+
+.animate-up {
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.stagger-list>* {
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.stagger-list>*:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.stagger-list>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.stagger-list>*:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.stagger-list>*:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.stagger-list>*:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.stagger-list>*:nth-child(6) {
+    animation-delay: 0.30s;
+}
+
+.stagger-list>*:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-};
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
